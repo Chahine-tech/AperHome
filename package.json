@@ -8,7 +8,9 @@
     "scripts": {
         "dev": "npx nodemon src/server",
         "start": "node .dist/server.js",
-        "build": "npx babel src/ --out-dir .dist/ --extensions \".js\" --copy-files"
+        "build:app": "npx babel src/ --out-dir .dist/ --extensions \".js\" --copy-files",
+        "build": "npx prisma migrate deploy && npm run build:app"
+
     },
     "keywords": [
         "server",
