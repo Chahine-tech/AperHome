@@ -7,10 +7,5 @@ module.exports = {
           useBuiltIns: "usage",
         },
       ],
-    ],
-    plugins: [
-              
-            '@babel/plugin-transform-runtime', 
-
     ]
   }
