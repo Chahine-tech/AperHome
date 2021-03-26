@@ -7,13 +7,15 @@
     "license": "ISC",
     "scripts": {
         "dev": "npx nodemon src/server",
-        "start":"npx babel-node src/server"
+        "start": "node .dist/server.js",
+        "build": "npx babel src/ --out-dir .dist/ --extensions \".js\" --copy-files"
     },
     "keywords": [
         "server",
         "API"
     ],
     "dependencies": {
+        "@babel/runtime": "^7.13.10",
         "@prisma/client": "^2.18.0",
         "bcryptjs": "^2.4.3",
         "chalk": "^3.0.0",
@@ -29,7 +31,8 @@
         "randomstring": "^1.1.5"
     },
     "devDependencies": {
-        "@babel/core": "^7.13.8",
+        "@babel/cli": "^7.13.10",
+        "@babel/core": "^7.13.10",
         "@babel/node": "^7.13.0",
         "@babel/preset-env": "^7.13.9",
         "maildev": "^1.1.0",
