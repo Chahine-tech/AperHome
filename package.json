@@ -6,7 +6,8 @@
     "author": "chahine",
     "license": "ISC",
     "scripts": {
-        "dev": "npx nodemon src/server"
+        "dev": "npx nodemon src/server",
+        "start":"npx nodemon src/server"
     },
     "keywords": [
         "server",
