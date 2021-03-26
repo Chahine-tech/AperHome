@@ -9,13 +9,7 @@ api.get('/', (_req, res) => {
   res.json({ hello: "world" })
 })
 
-api.get('/students', (_req, res) => {
-  res.json([
-    { firstname: 'Chahine' },
-    { firstname: 'Bibi' },
-    { firstname: 'Elior' },
-  ])
-})
+
 
 
 api.use('/auth', auth)
