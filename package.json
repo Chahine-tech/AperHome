@@ -1,0 +1,38 @@
+{
+    "name": "aperhome",
+    "version": "1.0.0",
+    "description": "A simple server",
+    "main": "src/server.js",
+    "author": "chahine",
+    "license": "ISC",
+    "scripts": {
+        "dev": "npx nodemon src/server"
+    },
+    "keywords": [
+        "server",
+        "API"
+    ],
+    "dependencies": {
+        "@prisma/client": "^2.18.0",
+        "bcryptjs": "^2.4.3",
+        "chalk": "^3.0.0",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "lodash": "^4.17.21",
+        "nodemailer": "^6.5.0",
+        "passport": "^0.4.1",
+        "passport-jwt": "^4.0.0",
+        "passport-local": "^1.0.0",
+        "randomstring": "^1.1.5"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.13.8",
+        "@babel/node": "^7.13.0",
+        "@babel/preset-env": "^7.13.9",
+        "maildev": "^1.1.0",
+        "nodemon": "^2.0.7",
+        "prisma": "^2.18.0"
+    }
+}
