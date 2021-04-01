@@ -24,10 +24,13 @@ async function server() {
       dotenv.config()
     const port = parseInt(process.env.PORT || 3000, 10)
 
-    app.listen(3000, function() {
+    /*app.listen(3000, function() {
         console.log("Server starting at http://localhost:3000");
       });
-
+      */
+      app.listen(process.env.PORT, function() {
+        console.log(`Server starting at http://localhost:${process.env.PORT}`);
+      });
     }
     catch (err) {
         console.log("error start")
