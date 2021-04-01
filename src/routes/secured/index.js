@@ -1,9 +1,9 @@
 import {Router} from 'express'
 import user from './users'
-import task from './task'
+import bar from './bars'
 
 const api = Router()
 
 api.use('/user', user)
-api.use('/task', task)
+api.use('/bars', bar)
 export default api
