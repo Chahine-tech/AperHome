@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { PrismaClient } from '@prisma/client'
 import dotenv from 'dotenv'
-const continentData = require('../../../jsonfile/restaurants-casvp.json');
+const barsData = require('../../../jsonfile/restaurants-casvp.json');
 
 const api = Router()
 
@@ -10,16 +10,17 @@ api.get('/', async (req, res) => {
 
 const db = new Prisma({
   secret: process.env.PRISMA_SECRET,
-  endpoint: process.env.PRISMA_ENDPOINT
+  endpoint: process.env.PRISMA_ENDPOINT,
 });
 
-const seedContinents = () => {
-  // adding continents to the data
+const seedBars = () => {
+  // adding bars to the data
   Promise.all(
-    continentData.map(async continentItem => {
-      const { imageURL, continent } = continentItem;
-      const response = await db.createContinent({
-        name: nom_restaurant || 'default name',
+    barsData.map(async barsItem => {
+      
+      const { ville, bars, adresse } = barsItem;
+      const response = await db.createBars({
+        name: bars || 'default name',
         ville,
         adresse,
 
@@ -29,7 +30,7 @@ const seedContinents = () => {
   );
 };
 
-seedContinents();
+seedBars();
 
 })
 
