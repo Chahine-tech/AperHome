@@ -33,7 +33,7 @@ async function server() {
       });
     }
     catch (err) {
-        console.log("error start")
+        console.log("error starting")
       }
     
 }
