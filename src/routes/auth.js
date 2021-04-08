@@ -92,4 +92,28 @@ api.post('/forgot-password', async (req, res) => {
   res.json({ data: { message: 'Email successfully sent' } })
 })
 
+api.get(
+  '/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (_, response) => {
+    response.redirect('/');
+  }
+);
+
+api.get(
+  '/google',
+  passport.authenticate('google', { scope: 'https://www.google.com/m8/feeds' })
+)
+/*
+app.get('/auth/google',
+  passport.authenticate('google', { scope:
+      [ 'email', 'profile' ] }
+));
+
+app.get( '/auth/google/callback',
+    passport.authenticate( 'google', {
+        successRedirect: '/auth/google/success',
+        failureRedirect: '/auth/google/failure'
+}));
+*/
 export default api

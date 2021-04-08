@@ -1,6 +1,7 @@
 require('dotenv').config()
 import { Router } from 'express'
 import passport from 'passport'
+import dotenv from 'dotenv'
 const api = Router()
 const cookieParser = require('cookie-parser')
 
@@ -10,7 +11,7 @@ const CLIENT_ID = '333642631602-h2l1m29lfb5c1d0dta76nvv4so4bjeo4.apps.googleuser
 const client = new OAuth2Client(CLIENT_ID);
 
 
-
+dotenv.config()
 // Middleware
 api.get('/', (req, res)=>{
     res.render('index')
