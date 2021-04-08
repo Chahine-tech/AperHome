@@ -4,6 +4,7 @@ import { Strategy as JsonWebTokenStrategy, ExtractJwt } from 'passport-jwt'
 import { PrismaClient } from '@prisma/client'
 import { checkPassword } from '../utils/password'
 import dotenv from 'dotenv'
+const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 
 /**
  * Strategy with credential email/password
@@ -56,3 +57,15 @@ passport.use(new JsonWebTokenStrategy({
     next(err.message, null)
   }
 }))
+
+passport.use(new GoogleStrategy({
+  consumerKey: GOOGLE_CONSUMER_KEY,
+  consumerSecret: GOOGLE_CONSUMER_SECRET,
+  callbackURL: "http://www.example.com/auth/google/callback"
+},
+function(token, tokenSecret, profile, done) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+}
+));

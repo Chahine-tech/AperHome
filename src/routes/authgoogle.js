@@ -1,6 +1,6 @@
 require('dotenv').config()
-
 import { Router } from 'express'
+import passport from 'passport'
 const api = Router()
 const cookieParser = require('cookie-parser')
 
@@ -12,12 +12,6 @@ const client = new OAuth2Client(CLIENT_ID);
 
 
 // Middleware
-
-api.set('view engine', 'ejs');
-api.use(express.json());
-api.use(cookieParser());
-api.use(express.static('public'));
-
 api.get('/', (req, res)=>{
     res.render('index')
 })
@@ -60,6 +54,19 @@ api.get('/logout', (req, res)=>{
     res.redirect('/login')
 
 })
+
+api.get(
+  '/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (_, response) => {
+    response.redirect('/');
+  }
+);
+
+api.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: 'https://www.google.com/m8/feeds' })
+)
 
 
 function checkAuthenticated(req, res, next){
