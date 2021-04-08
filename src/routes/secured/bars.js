@@ -1,37 +1,25 @@
 import { Router } from 'express'
 import { PrismaClient } from '@prisma/client'
 import dotenv from 'dotenv'
-const barsData = require('../../../jsonfile/restaurants-casvp.json');
+import { BAD_REQUEST } from '../../constants/api'
 
 const api = Router()
 
 api.get('/', async (req, res) => {
-  dotenv.config();
+  try {
 
-const db = new Prisma({
-  secret: process.env.PRISMA_SECRET,
-  endpoint: process.env.PRISMA_ENDPOINT,
-});
+    const prisma = new PrismaClient()
+    const restaurants = await prisma.restaurant.findMany({
+      select: {
+        name: true,
 
-const seedBars = () => {
-  // adding bars to the data
-  Promise.all(
-    barsData.map(async barsItem => {
-      
-      const { ville, bars, adresse } = barsItem;
-      const response = await db.createBars({
-        name: bars || 'default name',
-        ville,
-        adresse,
-
-    });
-      return response;
+      }
     })
-  );
-};
 
-seedBars();
-
+    res.json({ data: { restaurants } })
+  } catch (err) {
+    res.status(BAD_REQUEST.status).json({ error: err.message })
+  }
 })
 
 

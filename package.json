@@ -10,7 +10,6 @@
         "start": "node .dist/server.js",
         "build:app": "npx babel src/ --out-dir .dist/ --extensions \".js\" --copy-files",
         "build": "npx prisma migrate deploy && npm run build:app"
-
     },
     "keywords": [
         "server",
@@ -21,10 +20,14 @@
         "@prisma/client": "^2.18.0",
         "bcryptjs": "^2.4.3",
         "chalk": "^3.0.0",
+        "cookie-parser": "^1.4.5",
         "core-js": "^3.9.1",
         "cors": "^2.8.5",
         "dotenv": "^8.2.0",
+        "ejs": "^3.1.6",
         "express": "^4.17.1",
+        "gcp-metadata": "^4.2.1",
+        "google-auth-library": "^7.0.4",
         "jsonwebtoken": "^8.5.1",
         "lodash": "^4.17.21",
         "nodemailer": "^6.5.0",
