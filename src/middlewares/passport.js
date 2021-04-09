@@ -61,10 +61,10 @@ passport.use(new JsonWebTokenStrategy({
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/callback"
+  callbackURL: "http://localhost:3000/api/auth/google/callback"
 },
 function(token, tokenSecret, profile, done) {
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    prisma.user.findUnique({ googleId: profile.id }, function (err, user) {
       return done(err, user);
     });
 }
