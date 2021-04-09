@@ -1,7 +1,7 @@
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as JsonWebTokenStrategy, ExtractJwt } from 'passport-jwt'
-import { PrismaClient } from '@prisma/client'
+import { prisma, PrismaClient } from '@prisma/client'
 import { checkPassword } from '../utils/password'
 import dotenv from 'dotenv'
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
@@ -65,6 +65,10 @@ passport.use(new GoogleStrategy({
 },
 function(token, tokenSecret, profile, done) {
     prisma.user.findUnique({ googleId: profile.id }, function (err, user) {
+      if (!user){ 
+       
+      }
+
       return done(err, user);
     });
 }
