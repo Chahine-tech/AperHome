@@ -12,6 +12,7 @@ api.get('/', async (req, res) => {
     const restaurants = await prisma.restaurant.findMany({
       select: {
         name: true,
+        adresse: true,
 
       }
     })

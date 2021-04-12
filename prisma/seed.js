@@ -6,8 +6,8 @@ function getAllRestaurants(){
 
     const restaurants = JSON.parse(fs.readFileSync(`${__dirname}/data/restaurants.json`))
     return restaurants
-        .filter((restaurant) => restaurant.fields["nom_restaurant"])
-        .map((restaurant) => ({ name: restaurant.fields["nom_restaurant"]}))
+        .filter((restaurant) => restaurant.fields["nom_restaurant", "adresse"])
+        .map((restaurant) => ({ name: restaurant.fields["nom_restaurant"], adresse : restaurant.fields["adresse"]}))
 
     
 }

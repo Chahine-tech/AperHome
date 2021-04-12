@@ -21,6 +21,6 @@ model User {
 }
 model Restaurant {
   id                Int      @id @default(autoincrement())
-  name              String   @unique
-  
+  name              String   @unique 
+  adresse           String 
 }
