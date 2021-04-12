@@ -63,13 +63,26 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "http://localhost:3000/api/auth/google/callback"
 },
-function(token, tokenSecret, profile, done) {
+/*function(token, tokenSecret, profile, done) {
+  const prisma = new PrismaClient()
     prisma.user.findUnique({ googleId: profile.id }, function (err, user) {
       if (!user){ 
-       
+        user = await prisma.user.create({data: { } })
       }
 
       return done(err, user);
     });
 }
+*/
+async (token, tokenSecret, profile, done) => {
+  const prisma = new PrismaClient()
+// 1. Checking if user exist
+let user = await prisma.user.findUnique({where: { googleId: profile.id }})
+if (!user) {
+  user = await prisma.user.create({data: { } })
+}
+
+done(null, user)
+}
 ));
+
