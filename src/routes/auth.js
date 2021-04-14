@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import passport from 'passport'
 import randomstring from 'randomstring'
 import { hashPassword } from '../utils/password'
+const generator = require('generate-password');
 
 const api = Router()
 
@@ -122,8 +123,15 @@ passport.authenticate( 'google', {
     session: false
 
   }),
+  
+  
   (req,res) =>{
-    res.json({...req.user, token: jwt.sign({email: req.user.email}, process.env.JWT_ENCRYPTION)})
+    let newpassword = generator.generate({
+      length: 10,
+      numbers: true
+    });
+    
+    res.json({...req.user, token: jwt.sign({email: req.user.email}, process.env.JWT_ENCRYPTION),})
   }
   );
 

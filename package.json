@@ -27,6 +27,7 @@
         "ejs": "^3.1.6",
         "express": "^4.17.1",
         "gcp-metadata": "^4.2.1",
+        "generate-password": "^1.6.0",
         "google-auth-library": "^7.0.4",
         "jsonwebtoken": "^8.5.1",
         "lodash": "^4.17.21",
