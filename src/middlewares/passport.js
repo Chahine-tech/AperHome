@@ -9,6 +9,7 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 /**
  * Strategy with credential email/password
  */
+
 passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
@@ -77,9 +78,10 @@ passport.use(new GoogleStrategy({
 async (token, tokenSecret, profile, done) => {
   const prisma = new PrismaClient()
 // 1. Checking if user exist
+
 let user = await prisma.user.findUnique({where: { googleId: profile.id }})
 if (!user) {
-  user = await prisma.user.create({data: { } })
+  user = await prisma.user.create({data: {googleId: profile.id, firstname: profile.given_name, lastname: profile.family_name, email: profile.email, encryptedPassword: "" }})
 }
 
 done(null, user)

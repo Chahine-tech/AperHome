@@ -105,15 +105,26 @@ api.get(
   passport.authenticate('google', { scope: 'https://www.google.com/m8/feeds' })
 )
 */
+api.get('/google/success', (req,res)=>{
+console.log(req.user)
+res.json(req.user)
+
+}) 
+
+
 api.get('/google',
   passport.authenticate('google', { scope:
-      [ 'email', 'profile' ] }
+      [ 'email', 'profile'] }
 ));
 
 api.get( '/google/callback',
-    passport.authenticate( 'google', {
-        successRedirect: '/auth/google/success',
-        failureRedirect: '/auth/google/failure'
-}));
+passport.authenticate( 'google', {
+    session: false
+
+  }),
+  (req,res) =>{
+    res.json({...req.user, token: jwt.sign({email: req.user.email}, process.env.JWT_ENCRYPTION)})
+  }
+  );
 
 export default api

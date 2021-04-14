@@ -15,9 +15,10 @@ model User {
   lastname          String
   email             String   @unique
   encryptedPassword String
-  birthdate         DateTime 
+  birthdate         DateTime?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
+  googleId          String   @unique
 }
 model Restaurant {
   id                Int      @id @default(autoincrement())

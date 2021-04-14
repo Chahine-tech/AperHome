@@ -4,6 +4,8 @@ import dotenv from 'dotenv'
 import routes from './routes'
 import cors from 'cors'
 import './middlewares/passport'
+import passport from 'passport'
+import cookieParser from 'cookie-parser'
 
 async function server() {
     try {
@@ -13,11 +15,12 @@ async function server() {
 
       const app = express();
       app.use(express.json())
+      app.use(passport.initialize())
 
     app.get('/', (_req, res) => {
         res.send("Please take a look at our <a href='/api'>API</a>")
       })
-
+    
       app.use('/api', routes)
       
 
