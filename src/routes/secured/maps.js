@@ -2,7 +2,10 @@ import { Router } from 'express'
 //import { PrismaClient } from '@prisma/client'
 const api = Router()
 
+
+
 api.get('/', async (req, res) => {
+  
   let map;
 
 function initMap() {
@@ -11,6 +14,6 @@ function initMap() {
     zoom: 8,
   });
 }
+
 });
 export default api
-
